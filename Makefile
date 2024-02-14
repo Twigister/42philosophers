@@ -14,9 +14,13 @@ SRC_COMMON_DIR 		=	src/common/
 SRC_NORMAL_DIR	=	src/normal/
 SRC_BONUS_DIR	=	src/bonus/
 
-SRC_COMMON 		=	utils	\
+SRC_COMMON 		=	utils			\
+					print_err_exit	\
+					ft_bzero		\
 
-SRC_NORMAL		=	main
+SRC_NORMAL		=	main		\
+					init_philo	\
+					destruct	\
 
 SRC_BONUS 		=	
 

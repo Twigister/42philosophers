@@ -29,8 +29,12 @@ typedef struct s_philo {
 	t_options		*options;
 }	t_philo;
 
-int	ft_atoi(const char *s);
-int	is_num(char c);
-int	ft_strlen(const char *s);
+int		ft_atoi(const char *s);
+int		is_num(char c);
+int		ft_strlen(const char *s);
+void	print_err_exit(const char *msg);
+t_philo *init_philos(t_options *options);
+void	destruct_philos(t_philo *philos, int philo_count);
+void	ft_bzero(void *mem, unsigned int size);
 
 #endif

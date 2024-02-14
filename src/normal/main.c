@@ -23,18 +23,6 @@ static void	print_usage(void)
 	exit(0);
 }
 
-static void	print_err_exit(const char *msg)
-{
-	write(2, "Error", 6);
-	if (msg)
-	{
-		write(2, ": ", 2);
-		write(2, msg, ft_strlen(msg));
-	}
-	write(1, "\n", 1);
-	exit(1);
-}
-
 static void	init_options(t_options *options, int ac, char **av)
 {
 	options->philo_count = ft_atoi(av[1]);
@@ -59,9 +47,12 @@ static void	init_options(t_options *options, int ac, char **av)
 int	main(int ac, char **av)
 {
 	t_options	options;
+	t_philo		*philos;
 
 	if (5 <= ac && ac <= 6)
 		init_options(&options, ac, av);
 	else
 		print_usage();
+	philos = init_philos(&options);
+	destruct_philos(philos, options.philo_count);
 }
