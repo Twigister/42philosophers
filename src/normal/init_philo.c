@@ -1,12 +1,15 @@
 #include "philo.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-static void	new_philo(pthread_mutex_t *l, pthread_mutex_t *r, 
+static void	new_philo(pthread_mutex_t **forks, int number,
 	t_philo *dest, t_options *options)
 {
-	dest->lfork = l;
-	dest->rfork = r;
+	dest->lfork = forks[0];
+	dest->rfork = forks[1];
 	dest->options = options;
+	dest->number = 0;
+	printf("Philo %d created with %p %p\n", number, forks[0], forks[1]);
 }
 
 static void	swap_mutex_ptr(pthread_mutex_t **a, pthread_mutex_t **b)
@@ -52,28 +55,29 @@ static void	fill_philo_tab(t_options *options, t_philo *philos)
 {
 	int	i;
 	pthread_mutex_t	*fst;
-	pthread_mutex_t	*l;
-	pthread_mutex_t	*r;
+	pthread_mutex_t	*forks[2];
 
 	i = 1;
 	fst = NULL;
-	r = NULL;
-	l = NULL;
+	forks[1] = NULL;
 	mutex_creator(philos, 0, &fst);
+	forks[0] = fst;
 	if (options->philo_count != 1)
-		mutex_creator(philos, 0, &r);
+		mutex_creator(philos, 0, &forks[1]);
 	else
-		r = fst;
-	new_philo(fst, r, philos, options);
+		forks[1] = fst;
+	new_philo(forks, 1, philos, options);
 	while (i < options->philo_count - 1)
 	{
-		swap_mutex_ptr(&r, &l);
-		mutex_creator(philos, i, &r);
-		new_philo(l, r, philos + i, options);
+		swap_mutex_ptr(&forks[0], &forks[1]);
+		mutex_creator(philos, i, &forks[1]);
+		new_philo(forks, i + 1, philos + i, options);
 		++i;
 	}
+	forks[0] = forks[1];
+	forks[1] = fst;
 	if (options->philo_count > 1)
-		new_philo(r, fst, philos + i, options);
+		new_philo(forks, i + 1, philos + i, options);
 }
 
 t_philo *init_philos(t_options *options)
