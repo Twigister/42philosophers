@@ -6,7 +6,7 @@
 #    By: arlarzil <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/06 20:28:41 by arlarzil          #+#    #+#              #
-#    Updated: 2024/01/29 15:39:20 by arlarzil         ###   ########.fr        #
+#    Updated: 2024/02/19 18:24:46 by arlarzil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,12 @@ SRC_BONUS_DIR	=	src/bonus/
 SRC_COMMON 		=	utils			\
 					print_err_exit	\
 					ft_bzero		\
+					get_timestamp	\
 
 SRC_NORMAL		=	main		\
 					init_philo	\
 					destruct	\
+					routine		\
 
 SRC_BONUS 		=	
 

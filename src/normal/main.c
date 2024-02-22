@@ -48,11 +48,20 @@ int	main(int ac, char **av)
 {
 	t_options	options;
 	t_philo		*philos;
+	int			i;
 
 	if (5 <= ac && ac <= 6)
 		init_options(&options, ac, av);
 	else
 		print_usage();
 	philos = init_philos(&options);
+	i = 0;
+	while (i < options.philo_count)
+	{
+		pthread_create(&(philos[i].thread),
+			NULL, philo_routine, (void *)&philos[i]);
+		++i;
+	}
+	philo_watcher(philos);
 	destruct_philos(philos, options.philo_count);
 }
