@@ -37,9 +37,11 @@ static void	init_options(t_options *options, int ac, char **av)
 	options->time_to_sleep = ft_atoi(av[4]);
 	if (options->time_to_sleep <= 0)
 		print_err_exit("time to sleep must be a positive number");
+	options->nb_iter = 0;
 	if (ac == 5)
 		return ;
-	options->nb_iter = ft_atoi(av[5]);
+	if (ac == 6)
+		options->nb_iter = ft_atoi(av[5]);
 	if (options->nb_iter <= 0)
 		print_err_exit("number of times eating should be a positive number");
 }
@@ -56,6 +58,8 @@ int	main(int ac, char **av)
 		print_usage();
 	philos = init_philos(&options);
 	i = 0;
+	options.running = 1;
+	pthread_mutex_init(&options.running_m, NULL);
 	while (i < options.philo_count)
 	{
 		pthread_create(&(philos[i].thread),

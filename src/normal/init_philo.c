@@ -22,7 +22,7 @@ static void	new_philo(pthread_mutex_t **forks, int number,
 	dest->rfork = forks[1];
 	dest->options = options;
 	dest->number = number;
-	dest->last_ate_stamp = options->start_stamp;
+	dest->last_ate_stamp = 0;
 	printf("Philo %d created with %p %p\n", number, forks[0], forks[1]);
 }
 

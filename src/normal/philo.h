@@ -24,13 +24,15 @@ typedef struct s_counter {
 }	t_counter;
 
 typedef struct s_options {
-	int			philo_count;
-	int			time_to_die;
-	int			time_to_eat;
-	int			time_to_sleep;
-	int			nb_iter;
-	suseconds_t	start_stamp;
-	t_counter	counter;
+	int				philo_count;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				nb_iter;
+	suseconds_t		start_stamp;
+	t_counter		counter;
+	pthread_mutex_t	running_m;
+	int				running;
 }	t_options;
 
 typedef struct s_philo {

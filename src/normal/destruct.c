@@ -20,9 +20,13 @@ void	destruct_philos(t_philo *philos, int philo_count)
 	i = 0;
 	while (i < philo_count)
 	{
-		pthread_mutex_destroy(philos[i].lfork);
-		free(philos[i].lfork);
-		pthread_cancel(philos->thread);
+		if (pthread_cancel(philos[i].thread) == 0)
+		{
+			pthread_mutex_unlock(philos[i].lfork);
+			pthread_join(philos[i].thread, NULL);
+			pthread_mutex_destroy(philos[i].lfork);
+			free(philos[i].lfork);
+		}
 		++i;
 	}
 	free(philos);

@@ -44,7 +44,7 @@ BONUS_NAME		= 	philo
 
 CC 				= cc
 
-CFLAGS 	= -Wall -Wextra -Werror -Icommon -g3
+CFLAGS 	= -Wall -Wextra -Werror -Icommon -g3 -pthread
 
 all: 	$(NAME)
 
