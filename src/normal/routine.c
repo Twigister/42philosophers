@@ -109,7 +109,7 @@ void	philo_watcher(t_philo *philos)
 				}
 			++i;
 		}
-		usleep(10000);
+		usleep(1000);
 	}
 	pthread_mutex_lock(&philos->options->running_m);
 	philos->options->running = 0;
