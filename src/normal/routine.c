@@ -101,7 +101,7 @@ void	philo_watcher(t_philo *philos)
 			if (get_timestamp(philos->options->start_stamp) - philos->options->time_to_die >=
 				(philos[i].last_ate_stamp))
 				{
-					printf("%d died\n", i + 1);
+					printf("%ld %d died\n", get_timestamp(philos->options->start_stamp), i + 1);
 					pthread_mutex_lock(&philos->options->running_m);
 					philos->options->running = 0;
 					pthread_mutex_unlock(&philos->options->running_m);
