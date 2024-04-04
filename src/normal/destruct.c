@@ -22,7 +22,7 @@ void	destruct_philos(t_philo *philos, int philo_count)
 	{
 		if (pthread_cancel(philos[i].thread) == 0)
 		{
-			pthread_mutex_unlock(philos[i].lfork);
+			// pthread_mutex_unlock(philos[i].lfork); // C pos bon
 			pthread_join(philos[i].thread, NULL);
 			pthread_mutex_destroy(philos[i].lfork);
 			free(philos[i].lfork);

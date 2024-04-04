@@ -23,7 +23,6 @@ static void	new_philo(pthread_mutex_t **forks, int number,
 	dest->options = options;
 	dest->number = number;
 	dest->last_ate_stamp = 0;
-	printf("Philo %d created with %p %p\n", number, forks[0], forks[1]);
 }
 
 static void	swap_mutex_ptr(pthread_mutex_t **a, pthread_mutex_t **b)
@@ -100,7 +99,7 @@ t_philo	*init_philos(t_options *options)
 	struct timeval	tv;
 
 	if (pthread_mutex_init(&options->counter.m, NULL) != 0)
-		print_err_exit("Thread creation failed");
+		print_err_exit("Mutex initialization failed");
 	options->counter.count = 0;
 	if (gettimeofday(&tv, NULL) == -1)
 	{
