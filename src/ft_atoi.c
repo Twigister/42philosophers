@@ -3,52 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arlarzil <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: arlarzil <arlarzil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 12:52:55 by arlarzil          #+#    #+#             */
-/*   Updated: 2024/02/07 12:52:55 by arlarzil         ###   ########.fr       */
+/*   Created: 2023/11/06 11:28:57 by arlarzil          #+#    #+#             */
+/*   Updated: 2024/07/09 16:07:20 by arlarzil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(const char *s)
+int	ft_atoi(const char *str)
 {
-	const char	*e;
-
-	e = s;
-	while (*e)
-		++e;
-	return (e - s);
-}
-
-int	is_num(char c)
-{
-	return ('0' <= c && c <= '9');
-}
-
-int	ft_atoi(const char *s)
-{
-	int	res;
+	int	i;
 	int	sign;
-	int	next;
+	int	res;
 
-	res = 0;
 	sign = 1;
-	if (*s == '+' || *s == '-')
-	{
-		if (*(s++) == '-')
+	i = 0;
+	res = 0;
+	while (*str == ' ' || (9 <= *str && *str <= 13))
+		++str;
+	if (str[i] == '-' || str[i] == '+')
+		if (str[i++] == '-')
 			sign = -1;
-	}
-	else if (!is_num(*s))
-		return (0);
-	while (is_num(*s))
+	while ('0' <= str[i] && str[i] <= '9')
 	{
-		next = res * 10 + (*s - '0');
-		if (next < res)
-			return (0);
-		res = next;
-		++s;
+		res = res * 10 + (str[i++] - '0');
 	}
-	if (sign == -1 && res * sign == res)
-		return (0);
 	return (res * sign);
 }

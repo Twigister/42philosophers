@@ -3,26 +3,27 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: arlarzil <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: arlarzil <arlarzil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/06 20:28:41 by arlarzil          #+#    #+#              #
-#    Updated: 2024/02/19 18:24:46 by arlarzil         ###   ########.fr        #
+#    Updated: 2024/07/09 19:30:58 by arlarzil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC_COMMON_DIR 		=	src/common/
-SRC_NORMAL_DIR	=	src/normal/
-SRC_BONUS_DIR	=	src/bonus/
+SRC_COMMON_DIR		=	src/
+SRC_NORMAL_DIR		=	src/
+SRC_BONUS_DIR		=	src/bonus/
 
-SRC_COMMON 		=	utils			\
-					print_err_exit	\
-					ft_bzero		\
+SRC_COMMON 		=	ft_atoi		\
+
+SRC_NORMAL		=	main			\
+					init			\
+					destruct		\
+					run				\
+					routine			\
+					quick_mutex		\
 					get_timestamp	\
-
-SRC_NORMAL		=	main		\
-					init_philo	\
-					destruct	\
-					routine		\
+					eat				\
 
 SRC_BONUS 		=	
 
