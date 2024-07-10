@@ -6,7 +6,7 @@
 /*   By: arlarzil <armand.larzilliere@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:57:39 by arlarzil          #+#    #+#             */
-/*   Updated: 2024/07/10 19:32:29 by arlarzil         ###   ########.fr       */
+/*   Updated: 2024/07/10 19:48:11 by arlarzil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	action(t_philo *self, const char *text)
 		stamp = get_timestamp(self->opt->start);
 		printf("%ld %d %s\n", stamp, self->num, text);
 		pthread_mutex_unlock(&self->opt->print_m);
-		usleep(1000);
 		return (1);
 	}
 	return (0);
@@ -34,14 +33,14 @@ int	action(t_philo *self, const char *text)
 
 static int	philo_step(t_philo *p, int *eat_count)
 {
-	if (!action(p, "is thinking"))
-		return (0);
-	usleep(1000);
 	if (!eat(p, eat_count))
 		return (0);
 	if (!action(p, "is sleeping"))
 		return (0);
 	usleep(p->opt->t_sleep * 1000);
+	if (!action(p, "is thinking"))
+		return (0);
+	usleep(1000);
 	return (1);
 }
 
@@ -54,6 +53,7 @@ void	*routine(void *data)
 	self = data;
 	if (self->num % 2 == 0)
 		usleep(3000);
+	action(self, "is thinking");
 	while (philo_step(self, &eat_count))
 		;
 	return (NULL);
