@@ -6,7 +6,7 @@
 /*   By: arlarzil <armand.larzilliere@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:57:39 by arlarzil          #+#    #+#             */
-/*   Updated: 2024/07/10 19:48:11 by arlarzil         ###   ########.fr       */
+/*   Updated: 2024/07/10 19:54:00 by arlarzil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	*routine(void *data)
 	eat_count = 0;
 	self = data;
 	if (self->num % 2 == 0)
-		usleep(3000);
+		usleep(9800);
 	action(self, "is thinking");
 	while (philo_step(self, &eat_count))
 		;
