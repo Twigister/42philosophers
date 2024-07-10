@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arlarzil <arlarzil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arlarzil <armand.larzilliere@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 15:53:01 by arlarzil          #+#    #+#             */
-/*   Updated: 2024/07/09 20:27:11 by arlarzil         ###   ########.fr       */
+/*   Updated: 2024/07/10 19:14:50 by arlarzil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,14 @@ static int	init_common(t_options *opt)
 	if (pthread_mutex_init(&opt->print_m, NULL))
 		return (1);
 	if (pthread_mutex_init(&opt->run_m, NULL))
-	{
-		pthread_mutex_destroy(&opt->print_m);
-		return (1);
-	}
+		return (pthread_mutex_destroy(&opt->print_m), 1);
 	if (pthread_mutex_init(&opt->count_m, NULL))
 	{
 		pthread_mutex_destroy(&opt->print_m);
 		pthread_mutex_destroy(&opt->run_m);
 		return (1);
 	}
-	opt->run = 0;
+	opt->run = 1;
 	opt->rem_count = 0;
 	return (0);
 }

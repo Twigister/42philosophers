@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arlarzil <arlarzil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arlarzil <armand.larzilliere@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:09:22 by arlarzil          #+#    #+#             */
-/*   Updated: 2024/07/09 20:42:55 by arlarzil         ###   ########.fr       */
+/*   Updated: 2024/07/10 19:15:32 by arlarzil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,18 @@ static void	watch(t_philo *philo)
 
 int	run_sim(t_philo *philo)
 {
-	int			i;
-	t_options	*opt;
+	int				i;
+	t_options		*opt;
 	struct timeval	tv;
 
 	i = 0;
 	opt = philo->opt;
+	if (gettimeofday(&tv, NULL) == -1)
+	{
+		write(2, "Error using gettimeofday\n", 26);
+		return (1);
+	}
+	philo->opt->start = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 	while (i < opt->p_count)
 	{
 		if (pthread_create(&philo[i].thread, NULL, routine, (void *)&philo[i]))
@@ -71,15 +77,6 @@ int	run_sim(t_philo *philo)
 		}
 		i += 1;
 	}
-	pthread_mutex_lock(&opt->run_m);
-	if (gettimeofday(&tv, NULL) == -1)
-	{
-		write(2, "Error using gettimeofday\n", 26);
-		return (1);
-	}
-	philo->opt->start = tv.tv_sec * 1000 + tv.tv_usec / 1000;
-	opt->run = 1;
-	pthread_mutex_unlock(&opt->run_m);
 	watch(philo);
 	return (0);
 }
