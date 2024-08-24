@@ -12,15 +12,18 @@
 
 SRC_NORMAL_DIR		=	src/
 
-SRC_NORMAL		=	main			\
-					init			\
-					destruct		\
-					run				\
-					routine			\
-					quick_mutex		\
-					get_timestamp	\
-					eat				\
-					ft_atoi			\
+SRC_NORMAL		=	main				\
+					init				\
+					destruct			\
+					launch				\
+					quick_mutex			\
+					waiter				\
+					utils/ft_atoi		\
+					utils/get_timestamp	\
+					utils/msleep		\
+					actions/action		\
+					actions/routine		\
+					actions/eat			\
 
 SRC_TO_FILENAME_NORMAL		= $(addsuffix .c, $(addprefix $(SRC_NORMAL_DIR), $(SRC_NORMAL)))
 
@@ -34,7 +37,7 @@ BONUS_NAME		= 	philo
 
 CC 				= cc
 
-CFLAGS 	= -Wall -Wextra -Werror -Icommon -g3 -pthread
+CFLAGS 	= -Wall -Wextra -Werror -Icommon -g3 -pthread -Iinclude
 
 all: 	$(NAME)
 
@@ -45,7 +48,7 @@ $(NAME): $(OBJS_NORMAL)
 	$(CC) -o $(NAME) $(OBJS_NORMAL) $(CFLAGS)
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS_NORMAL)
 
 fclean: clean
 	rm -f $(NAME) $(BONUS_NAME)
