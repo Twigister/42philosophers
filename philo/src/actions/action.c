@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   action.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arlarzil <arlarzil@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/25 12:38:52 by arlarzil          #+#    #+#             */
+/*   Updated: 2024/08/25 12:38:52 by arlarzil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <philo.h>
 #include <stdio.h>
 
@@ -8,7 +20,7 @@
 
 int	action(t_philo *self, const char *text)
 {
-	suseconds_t stamp;
+	suseconds_t	stamp;
 	int			ret;
 
 	ret = 0;

@@ -36,7 +36,7 @@ typedef struct s_options {
 typedef struct s_philo {
 	pthread_mutex_t	*lfork;
 	pthread_mutex_t	rfork;
-	pthread_mutex_t	m_last_ate; // A init
+	pthread_mutex_t	m_last_ate;
 	t_options		*opt;
 	int				num;
 	int				last_ate;
@@ -59,7 +59,7 @@ int			eat(t_philo *p, int *eat_count);
 int			qmutex_get(pthread_mutex_t *m, int *val);
 void		qmutex_set(pthread_mutex_t *m, int *val, int new);
 
-void		waiter(t_philo*	philo);
+void		waiter(t_philo *philo);
 
 suseconds_t	get_timestamp(suseconds_t initial_timestamp);
 

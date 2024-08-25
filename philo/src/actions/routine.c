@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   routine.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arlarzil <arlarzil@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/25 12:39:08 by arlarzil          #+#    #+#             */
+/*   Updated: 2024/08/25 12:39:08 by arlarzil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <philo.h>
 
 void	*routine(t_philo *self)
@@ -7,11 +19,8 @@ void	*routine(t_philo *self)
 	eat_count = 0;
 	if (!action(self, "is thinking"))
 		return (NULL);
-	// if (self->num == 1)
-	// 	msleep(3);
 	while (1)
 	{
-		// msleep(1);
 		if (self->num % 2)
 			msleep(6);
 		if (!eat(self, &eat_count))

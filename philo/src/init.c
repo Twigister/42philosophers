@@ -46,16 +46,12 @@ static int	fill_tab(t_philo *tab, t_options *opt)
 		tab[i].last_ate = 0;
 		if (pthread_mutex_init(&tab[i].rfork, NULL))
 		{
-			destruct_partial(tab, i - 1, false);
-			free(tab);
-			return (1);
+			return (destruct_partial(tab, i - 1, false), free(tab), 1);
 		}
 		if (pthread_mutex_init(&tab[i].m_last_ate, NULL))
 		{
 			pthread_mutex_destroy(&tab[i].m_last_ate);
-			destruct_partial(tab, i - 1, false);
-			free(tab);
-			return (1);
+			return (destruct_partial(tab, i - 1, false), free(tab), 1);
 		}
 		prev = &tab[i].rfork;
 		i += 1;
