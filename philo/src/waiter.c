@@ -50,6 +50,6 @@ void	waiter(t_philo *philo)
 			}
 			i += 1;
 		}
-		msleep(10);
+		msleep(1);
 	}
 }
