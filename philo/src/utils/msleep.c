@@ -28,6 +28,6 @@ void	msleep(int msec)
 	goal = mstime() + msec;
 	while (goal > mstime())
 	{
-		usleep(50);
+		usleep(500);
 	}
 }
