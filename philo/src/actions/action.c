@@ -9,14 +9,18 @@
 int	action(t_philo *self, const char *text)
 {
 	suseconds_t stamp;
+	int			ret;
 
-	if (qmutex_get(&self->opt->run_m, &self->opt->run))
+	ret = 0;
+	pthread_mutex_lock(&self->opt->run_m);
+	if (self->opt->run)
 	{
 		stamp = get_timestamp(self->opt->start);
 		pthread_mutex_lock(&self->opt->print_m);
 		printf("%ld %d %s\n", stamp, self->num, text);
 		pthread_mutex_unlock(&self->opt->print_m);
-		return (1);
+		ret = 1;
 	}
-	return (0);
+	pthread_mutex_unlock(&self->opt->run_m);
+	return (ret);
 }

@@ -10,7 +10,6 @@ static void	announce_death(t_philo *philo)
 	printf("%ld %d died\n", get_timestamp(philo->opt->start), philo->num);
 	pthread_mutex_unlock(&philo->opt->print_m);
 	pthread_mutex_unlock(&philo->opt->run_m);
-
 }
 
 static int	check_death(t_philo *philo)
