@@ -7,13 +7,13 @@ void	*routine(t_philo *self)
 	eat_count = 0;
 	if (!action(self, "is thinking"))
 		return (NULL);
-	if (self->num == 1)
-		msleep(1);
+	// if (self->num == 1)
+	// 	msleep(3);
 	while (1)
 	{
-		msleep(1);
-		if (self->opt->p_count % 2 && self->num % 2)
-			msleep(1);
+		// msleep(1);
+		if (self->num % 2)
+			msleep(6);
 		if (!eat(self, &eat_count))
 			break ;
 		if (!action(self, "is sleeping"))
